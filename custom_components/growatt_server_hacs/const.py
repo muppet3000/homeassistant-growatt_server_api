@@ -19,7 +19,7 @@ DEPRECATED_URLS = [
 
 DEFAULT_URL = SERVER_URLS[0]
 
-DOMAIN = "growatt_server"
+DOMAIN = "growatt_server_hacs"
 
 PLATFORMS = [Platform.SENSOR]
 
