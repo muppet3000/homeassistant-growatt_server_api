@@ -2,7 +2,7 @@
  
  
 
-![validate_badge](https://github.com/muppet3000/homeassistant-growatt_server_api/actions/workflows/validate.yml/badge.svg)
+[![validate_badge](https://github.com/muppet3000/homeassistant-growatt_server_api/actions/workflows/validate.yml/badge.svg)](https://github.com/muppet3000/homeassistant-growatt_server_api/actions)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?logo=homeassistantcommunitystore)](https://github.com/hacs/integration)
 [![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
 
