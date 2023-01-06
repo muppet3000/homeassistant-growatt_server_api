@@ -2,7 +2,7 @@
  
  
 
-![validate_badge](https://github.com/muppet3000/growatt_server_hacs/actions/workflows/validate.yml/badge.svg)
+![validate_badge](https://github.com/muppet3000/homeassistant-growatt_server_api/actions/workflows/validate.yml/badge.svg)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?logo=homeassistantcommunitystore)](https://github.com/hacs/integration)
 [![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
 
@@ -30,4 +30,4 @@ or (if you don't want to use HACS)
 1. Download the latest release to your custom_components folder inside the Home Assistant configuration directory and unpack it
 
 # More Info
-Please read the info.md file [here](https://github.com/muppet3000/growatt_server_hacs/blob/main/info.md) for more information, including the roadmap for the integration.
+Please read the info.md file [here](https://github.com/muppet3000/homeassistant-growatt_server_api/blob/main/info.md) for more information, including the roadmap for the integration.
