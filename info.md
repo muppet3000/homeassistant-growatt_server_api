@@ -1,6 +1,6 @@
 :warning: **This repository is still in development, please continue to use the Home Assistant Core Integration for now** :warning:
 
-# Growatt Server HACS (growatt_server_hacs)
+# Growatt Server API (growatt_server_api)
 This custom component (installable via HACS) replaces the original [growatt_server](https://www.home-assistant.io/integrations/growatt_server/) integration that is currently part of the Core Home Assistant repository.
 
 The integration will be removed from the core repository due to various issues with the authentication mechanism for Growatt (Growatt keep blocking the python library), using the HACS system will allow for more dynamic responses to the changes made by Growatt.

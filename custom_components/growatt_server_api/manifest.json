@@ -1,12 +1,12 @@
 {
-  "domain": "growatt_server_hacs",
-  "name": "Growatt Server HACS",
+  "domain": "growatt_server_api",
+  "name": "Growatt Server API",
   "config_flow": true,
   "documentation": "https://github.com/muppet3000/growatt_server_hacs",
   "requirements": ["growattServer==1.3.0"],
   "codeowners": ["@muppet3000", "@indykoning"],
   "iot_class": "cloud_polling",
-  "loggers": ["growattServerHacs"],
+  "loggers": ["growattServerApi"],
   "version": "0.0.0",
   "issue_tracker": "https://github.com/muppet3000/growatt_server_hacs/issues"
 }
