@@ -1,5 +1,3 @@
-:warning: **This repository is still in development, please continue to use the Home Assistant Core Integration for now** :warning:
-
 # Growatt Server API (growatt_server_api)
 This custom component (installable via HACS) replaces the original [growatt_server](https://www.home-assistant.io/integrations/growatt_server/) integration that is currently part of the Core Home Assistant repository.
 
@@ -9,6 +7,8 @@ If anyone wants to say 'thanks' for the integration, feel free to click..... [![
 
 # Implementation
 On initial release this plugin is an identical copy of the original integration that was part of the Home Assistant release. Going forward, this will be the only place that the Growatt integration for Home Assistant is updated. The original implementation will be removed from Home Assistant Core in due course. (This README will be updated when this happens).
+
+This integration will continue to update the same sensors that were available in the previous integration with no interruption to service i.e. you don't have to go re-writing automations or re-mapping values
 
 # Features
 This is a sensor to collect information from your Growatt inverters using [Growatt server](https://server.growatt.com/) by default. It is possible to specify an alternative endpoint server at configuration time e.g., [SMTEN](https://server.smten.com/).

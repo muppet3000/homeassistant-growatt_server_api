@@ -1,7 +1,3 @@
-:warning: **This repository is still in development, please continue to use the Home Assistant Core Integration for now** :warning:
- 
- 
-
 [![validate_badge](https://github.com/muppet3000/homeassistant-growatt_server_api/actions/workflows/validate.yml/badge.svg)](https://github.com/muppet3000/homeassistant-growatt_server_api/actions)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?logo=homeassistantcommunitystore)](https://github.com/hacs/integration)
 [![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
@@ -17,13 +13,25 @@ On initial release this plugin is an identical copy of the original integration 
 # Installation
 This integration can be installed via HACS for Home Assistant
 1. [Install HACS](https://hacs.xyz/docs/setup/prerequisites) (Follow all the way through to the 'Configuration' page)
-1. In HACS search for & install this integration:
+1. In HACS install this integration (this will be simplified once this repository has been added to the default HACS repos via [this](https://github.com/hacs/default/pull/1660) PR):
     1. Click 'HACS' on the left menu
     1. Click 'Integrations'
+       <!-- DELETE THIS SECTION ONCE AVAILABLE IN THE DEFAULT REPOS -->
+    1. Click the three dots in the top-right corner
+    1. Click 'Custom repositories'
+    1. In the 'Repository' field enter: `https://github.com/muppet3000/homeassistant-growatt_server_api`
+    1. In the 'Category' field select 'Integration'
+    1. Click 'Add'
+    1. Once the repository is added click on `Growatt Server API`
+    1. On the next page select 'Download' in the bottom-right corner
+    1. Choose the latest released version and click 'DOWNLOAD'
+    1. Click the 'HACS' button in the menu and restart Home Assistant when prompted
+    <!-- THIS WILL WORK WHEN IT'S IN THE DEFAULT REPOS
     1. Click 'Explore & Download Repositories'
     1. Search for 'Growatt Server HACS' & click it
     1. Click 'Download' and follow on-screen instructions
-1. Once the plugin is installed via HACS configure it just like a normal Home Assistant Integration i.e. from Settings -> Devices & Settings -> Add Integration -> Search for Growatt Server HACS
+    -->
+1. Once the plugin is installed via HACS configure it just like a normal Home Assistant Integration i.e. from Settings -> Devices & Settings -> Add Integration -> Search for Growatt Server API
 
 or (if you don't want to use HACS)
 
