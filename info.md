@@ -3,7 +3,10 @@ This custom component (installable via HACS) replaces the original [growatt_serv
 
 The integration will be removed from the core repository due to various issues with the authentication mechanism for Growatt (Growatt keep blocking the python library), using the HACS system will allow for more dynamic responses to the changes made by Growatt.
 
-If anyone wants to say 'thanks' for the integration, feel free to click..... [![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?style=for-the-badge&logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
+If anyone wants to say 'thanks' for the integration, feel free to click something below..... 
+
+[![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?style=for-the-badge&logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
+[![paypal_badge](https://img.shields.io/badge/PayPal-Beer_Fund-blue.svg?style=for-the-badge&logo=paypal)](https://www.paypal.com/paypalme/muppet3000)
 
 # Implementation
 On initial release this plugin is an identical copy of the original integration that was part of the Home Assistant release. Going forward, this will be the only place that the Growatt integration for Home Assistant is updated. The original implementation will be removed from Home Assistant Core in due course. (This README will be updated when this happens).
