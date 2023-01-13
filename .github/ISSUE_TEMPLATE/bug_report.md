@@ -8,7 +8,9 @@ assignees: ''
 ---
 
 <!--
-The comment blocks are here to guide you, please do not delete any sections and follow the instructions, this will help to provide the best response to your bug
+The comment blocks are here to guide you, please do not delete any sections and follow the instructions, this will help to provide the best response to your bug.
+
+Remember you can click the 'preview' button to see what your bug report looks like before posting it.
 -->
 
 **Describe the bug**
