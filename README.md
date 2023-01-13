@@ -4,12 +4,14 @@
 [![paypal_badge](https://img.shields.io/badge/PayPal-Beer_Fund-blue.svg?&logo=paypal)](https://www.paypal.com/paypalme/muppet3000)
 
 # Growatt Server API Home Assistant Custom Component (growatt_server_api)
-This custom component (installable via HACS) replaces the original [growatt_server](https://www.home-assistant.io/integrations/growatt_server/) integration that is currently part of the Core Home Assistant repository.
+This custom component (installable via HACS) is an upstream version of [growatt_server](https://www.home-assistant.io/integrations/growatt_server/) integration that is part of the [Home Assistant Core](https://github.com/home-assistant/core/tree/dev/homeassistant/components/growatt_server) repository.
 
-The integration will be removed from the core repository due to various issues with the authentication mechanism for Growatt (Growatt keep blocking the python library), using the HACS system will allow for more dynamic responses to the changes made by Growatt.
+The integration has been through a period of instability due to various issues with the authentication mechanism for Growatt (Growatt keep blocking the python library), using the HACS system will allow for more dynamic responses to the changes made by Growatt.
+
+The changes made in this repository will be rolled up monthly and then submitted as a Pull-Request to the main Home Assistant Core repository for release as an 'official' Integration.
 
 # Implementation
-On initial release this plugin is an identical copy of the original integration that was part of the Home Assistant release. Going forward, this will be the only place that the Growatt integration for Home Assistant is updated. The original implementation will be removed from Home Assistant Core in due course. (This README will be updated when this happens).
+On initial release this plugin is an identical copy of the original integration that was part of the Home Assistant release. Going forward, this will be the upstream release of the Integration and the first place that bugs are fixed & new features are added.
 
 # Installation
 This integration can be installed via HACS for Home Assistant
