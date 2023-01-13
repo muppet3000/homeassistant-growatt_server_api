@@ -1,38 +1,31 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
+about: Log a bug against the integration
+title: 'BUG - [Insert Bug Title Here]'
 labels: bug, triage
 assignees: ''
 
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+<!-- Please provide a clear and concise description of what the bug is. -->
 
 **To Reproduce**
-Steps to reproduce the behavior:
+<!-- Please provide a list of steps to reproduce the behaviour e.g.
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
+-->
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Growatt Device Type**
+<!-- Please log in to https://server.growatt.com/ the provide a list of items found under the 'device type' drop down, a screen grab of that page is also fine -->
+Device(s): 
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**Home Assistant information**
+ - Home Assistant version: 
+ - Growatt Server API Integration version: 
 
 **Additional context**
-Add any other context about the problem here.
+<!-- Add any other context about the problem here. -->
+N/A
