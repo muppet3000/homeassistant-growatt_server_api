@@ -7,6 +7,10 @@ assignees: ''
 
 ---
 
+<!--
+The comment blocks are here to guide you, please do not delete any sections and follow the instructions, this will help to provide the best response to your bug
+-->
+
 **Describe the bug**
 <!-- Please provide a clear and concise description of what the bug is. -->
 
