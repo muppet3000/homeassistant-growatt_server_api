@@ -42,3 +42,5 @@ or (if you don't want to use HACS)
 
 # More Info
 Please read the info.md file [here](https://github.com/muppet3000/homeassistant-growatt_server_api/blob/main/info.md) for more information, including the roadmap for the integration.
+
+There is also an [FAQ](FAQ.md)
