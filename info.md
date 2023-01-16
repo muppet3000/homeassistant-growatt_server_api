@@ -31,7 +31,8 @@ The implementation for these systems will follow soon
 - MAX/MID/MAC
 - AC Coupled aka SPA3000
 
-# Roadmap & Prioritised Items
-The roadmap for this integration can be found in the HA Forums [here](https://community.home-assistant.io/t/growatt-integration-roadmap/510221)
-
-The current prioritised list of features to implement can be found in the HA Forums [here](https://community.home-assistant.io/t/growatt-integration-prioritised-list-of-features-for-implementation-fixing/483850)
+# Useful links
+- [FAQ](https://github.com/muppet3000/homeassistant-growatt_server_api/blob/main/info.md)
+- [Changelog/Releases](https://github.com/muppet3000/homeassistant-growatt_server_api/releases)
+- [Roadmap (HA Forums)](https://community.home-assistant.io/t/growatt-integration-roadmap/510221)
+- [Prioritised list of features/bugs (HA Forums)](https://community.home-assistant.io/t/growatt-integration-prioritised-list-of-features-for-implementation-fixing/483850)

@@ -33,6 +33,7 @@ from .sensor_types.total import TOTAL_SENSOR_TYPES
 _LOGGER = logging.getLogger(__name__)
 
 SCAN_INTERVAL = datetime.timedelta(minutes=5)
+THROTTLE = datetime.timedelta(minutes=1)
 
 
 def get_device_list(api, config):
@@ -192,7 +193,7 @@ class GrowattData:
         self.username = username
         self.password = password
 
-    @Throttle(SCAN_INTERVAL)
+    @Throttle(THROTTLE)
     def update(self):
         """Update probe data."""
         self.api.login(self.username, self.password)
