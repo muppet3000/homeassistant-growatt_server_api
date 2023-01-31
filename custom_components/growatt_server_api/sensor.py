@@ -212,6 +212,19 @@ class GrowattData:
                 self.data = inverter_info
             elif self.growatt_type == "tlx":
                 tlx_info = self.api.tlx_detail(self.device_id)
+                tlx_data = self.api.tlx_data(self.device_id)
+                tlx_chart_data = tlx_data['invPacData']
+                current_pac = tlx_info['pac']
+                #If there are no datapoints in the graph set the value to zero.
+                if len(tlx_chart_data) == 0:
+                  tlx_info['pac'] = 0
+                else:
+                  #Establish the last data point in the graph, if the last point in the graph is before 'now - 10 minutes' then
+                  #set the value to zero. 
+                  sorted_chart_data = sorted(tlx_chart_data)
+                  last_updated_time = dt.parse_time(str(sorted_keys[-1]))
+                  #TODO - If last updated time is < now - 10 minutes, then set the value to zero.
+
                 self.data = tlx_info["data"]
             elif self.growatt_type == "storage":
                 storage_info_detail = self.api.storage_params(self.device_id)[
