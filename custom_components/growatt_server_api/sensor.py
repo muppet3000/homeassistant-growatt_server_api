@@ -240,16 +240,17 @@ class GrowattData:
                     date_now, last_updated_time, dt.DEFAULT_TIME_ZONE
                 )
 
-                # Dashboard data is largely inaccurate for mix system but it is the only call with the ability to return the combined
-                # imported from grid value that is the combination of charging AND load consumption
-                dashboard_data = self.api.dashboard_data(self.plant_id)
-                # Dashboard values have units e.g. "kWh" as part of their returned string, so we remove it
-                dashboard_values_for_mix = {
-                    # etouser is already used by the results from 'mix_detail' so we rebrand it as 'etouser_combined'
-                    "etouser_combined": float(
-                        dashboard_data["etouser"].replace("kWh", "")
-                    )
-                }
+                # We calculate this value dynamically based on the returned chart data. 
+                # There is no value available on the API that provides the combined value of: charging + load consumption
+                #For each time entry convert it's wattage into kWh, this assumes that the wattage value is
+                #the same for the whole 5 minute window (it's the only assumption we can make)
+                #We Multiply the wattage by 5/60 (the number of minutes of the time window divided by the number of minutes in an hour)
+                #to give us the equivalent kWh reading for that 5 minute window
+                pacToUserToday = 0.0
+                for time_entry, data_points in mix_chart_entries.items():
+                    pacToUserToday += float(data_points['pacToUser']) * (5/60)
+                mix_detail['etouser_combined'] = round(pacToUserToday,2)
+                    
                 self.data = {
                     **mix_info,
                     **mix_totals,
