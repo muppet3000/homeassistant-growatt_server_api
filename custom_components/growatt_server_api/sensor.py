@@ -242,14 +242,24 @@ class GrowattData:
 
                 # We calculate this value dynamically based on the returned chart data. 
                 # There is no value available on the API that provides the combined value of: charging + load consumption
-                #For each time entry convert it's wattage into kWh, this assumes that the wattage value is
-                #the same for the whole 5 minute window (it's the only assumption we can make)
-                #We Multiply the wattage by 5/60 (the number of minutes of the time window divided by the number of minutes in an hour)
-                #to give us the equivalent kWh reading for that 5 minute window
-                pacToUserToday = 0.0
-                for time_entry, data_points in mix_chart_entries.items():
-                    pacToUserToday += float(data_points['pacToUser']) * (5/60)
-                mix_detail['etouser_combined'] = round(pacToUserToday,2)
+                # For each time entry convert it's wattage into kWh, this assumes that the wattage value is
+                # the same for the whole X minute window (it's the only assumption we can make)
+                # We Multiply the wattage by <TIME PERIOD>/<HOUR> (the number of minutes of the time window divided by the number of minutes in an hour)
+                # to give us the equivalent kWh reading for that X minute window
+                pac_to_user_today = 0.0
+                hour_secs = datetime.timedelta(hours=1).total_seconds()
+                previous_time_val = datetime.time(0,0,0) #Start at midnight
+                for key in sorted_keys:
+                  time_val = datetime.datetime.strptime(key, '%H:%M').time()
+                  #Calculate the difference between this and the previous timestamp to determine how long this rate has been used for
+                  timediff_secs = (datetime.datetime.combine(datetime.date.min, time_val)
+                                    - datetime.datetime.combine(datetime.date.min, previous_time_val)).total_seconds()
+                  multiplier = timediff_secs / hour_secs
+                  data_points = mix_chart_entries[key]
+                  pac_to_user_today += float(data_points['pacToUser']) * multiplier
+                  previous_time_val = time_val
+
+                mix_detail['etouser_combined'] = round(pac_to_user_today,2)
                     
                 self.data = {
                     **mix_info,
