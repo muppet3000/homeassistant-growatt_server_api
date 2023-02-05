@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Log a bug against the integration
-title: 'BUG - [Insert Bug Title Here]'
+title: BUG - [Insert Bug Title Here]
 labels: bug, triage
 assignees: ''
 
