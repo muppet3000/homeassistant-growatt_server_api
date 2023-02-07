@@ -178,6 +178,29 @@ class GrowattInverter(SensorEntity):
         self.probe.update()
 
 
+def get_pac_value_from_chart(api_pac_value, chart_data):
+    """Returns the correct pac (Output Power) value based on chart data"""
+    pac_value = api_pac_value
+    #If there are no datapoints in the graph set the value to zero.
+    if len(chart_data) == 0:
+        _LOGGER.debug("Chart data missing, setting pac to 0")
+        pac_value=0
+    else:
+        #Establish the last data point in the graph, if the last point in the graph is before 'now - 10 minutes' then
+        #set the value to zero.
+        sorted_chart_data = sorted(chart_data)
+        last_updated_dt = dt.parse_datetime(str(sorted_chart_data[-1]))
+        last_updated = datetime.datetime.combine(last_updated_dt.date(), last_updated_dt.time(), dt.DEFAULT_TIME_ZONE)
+        now = dt.now()
+        time_diff = now - last_updated
+        if time_diff > datetime.timedelta(minutes=10):
+            #If last updated time is < now - 10 minutes, then set the value to zero.
+            _LOGGER.debug("Chart data has no new entry for 10 minutes, setting pac to 0")
+            pac_value = 0
+        else:
+            _LOGGER.debug("Chart data has recent entries, leaving pac untouched")
+    return pac_value
+
 class GrowattData:
     """The class for handling data retrieval."""
 
@@ -214,18 +237,9 @@ class GrowattData:
                 tlx_info = self.api.tlx_detail(self.device_id)
                 tlx_data = self.api.tlx_data(self.device_id)
                 tlx_chart_data = tlx_data['invPacData']
-                current_pac = tlx_info['pac']
-                #If there are no datapoints in the graph set the value to zero.
-                if len(tlx_chart_data) == 0:
-                  tlx_info['pac'] = 0
-                else:
-                  #Establish the last data point in the graph, if the last point in the graph is before 'now - 10 minutes' then
-                  #set the value to zero. 
-                  sorted_chart_data = sorted(tlx_chart_data)
-                  last_updated_time = dt.parse_time(str(sorted_keys[-1]))
-                  #TODO - If last updated time is < now - 10 minutes, then set the value to zero.
 
-                self.data = tlx_info["data"]
+                tlx_info['data']['pac'] = get_pac_value_from_chart(tlx_info['data']['pac'], tlx_chart_data)
+                self.data = tlx_info['data']
             elif self.growatt_type == "storage":
                 storage_info_detail = self.api.storage_params(self.device_id)[
                     "storageDetailBean"
