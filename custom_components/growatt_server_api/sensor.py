@@ -143,7 +143,7 @@ class GrowattInverter(SensorEntity):
 
     def __init__(
         self, probe, name, unique_id, description: GrowattSensorEntityDescription
-    ):
+    ) -> None:
         """Initialize a PVOutput sensor."""
         self.probe = probe
         self.entity_description = description
@@ -179,27 +179,33 @@ class GrowattInverter(SensorEntity):
 
 
 def get_pac_value_from_chart(api_pac_value, chart_data):
-    """Returns the correct pac (Output Power) value based on chart data"""
+    """Return the correct pac (Output Power) value based on chart data."""
     pac_value = api_pac_value
-    #If there are no datapoints in the graph set the value to zero.
+    # If there are no datapoints in the graph set the value to zero.
     if len(chart_data) == 0:
         _LOGGER.debug("Chart data missing, setting pac to 0")
-        pac_value=0
+        pac_value = 0
     else:
-        #Establish the last data point in the graph, if the last point in the graph is before 'now - 10 minutes' then
-        #set the value to zero.
+        # Establish the last data point in the graph, if the last point
+        # in the graph is before 'now - 10 minutes' then set the value
+        # to zero.
         sorted_chart_data = sorted(chart_data)
         last_updated_dt = dt.parse_datetime(str(sorted_chart_data[-1]))
-        last_updated = datetime.datetime.combine(last_updated_dt.date(), last_updated_dt.time(), dt.DEFAULT_TIME_ZONE)
+        last_updated = datetime.datetime.combine(
+            last_updated_dt.date(), last_updated_dt.time(), dt.DEFAULT_TIME_ZONE
+        )
         now = dt.now()
         time_diff = now - last_updated
         if time_diff > datetime.timedelta(minutes=10):
-            #If last updated time is < now - 10 minutes, then set the value to zero.
-            _LOGGER.debug("Chart data has no new entry for 10 minutes, setting pac to 0")
+            # If last updated time is < now - 10 minutes, then set the value to zero.
+            _LOGGER.debug(
+                "Chart data has no new entry for 10 minutes, setting pac to 0"
+            )
             pac_value = 0
         else:
             _LOGGER.debug("Chart data has recent entries, leaving pac untouched")
     return pac_value
+
 
 class GrowattData:
     """The class for handling data retrieval."""
@@ -236,10 +242,12 @@ class GrowattData:
             elif self.growatt_type == "tlx":
                 tlx_info = self.api.tlx_detail(self.device_id)
                 tlx_data = self.api.tlx_data(self.device_id)
-                tlx_chart_data = tlx_data['invPacData']
+                tlx_chart_data = tlx_data["invPacData"]
 
-                tlx_info['data']['pac'] = get_pac_value_from_chart(tlx_info['data']['pac'], tlx_chart_data)
-                self.data = tlx_info['data']
+                tlx_info["data"]["pac"] = get_pac_value_from_chart(
+                    tlx_info["data"]["pac"], tlx_chart_data
+                )
+                self.data = tlx_info["data"]
             elif self.growatt_type == "storage":
                 storage_info_detail = self.api.storage_params(self.device_id)[
                     "storageDetailBean"
@@ -256,7 +264,8 @@ class GrowattData:
                 )
 
                 mix_detail = self.api.mix_detail(self.device_id, self.plant_id)
-                # Get the chart data and work out the time of the last entry, use this as the last time data was published to the Growatt Server
+                # Get the chart data and work out the time of the last entry, use this
+                # as the last time data was published to the Growatt Server
                 mix_chart_entries = mix_detail["chartData"]
                 sorted_keys = sorted(mix_chart_entries)
 
@@ -267,27 +276,35 @@ class GrowattData:
                     date_now, last_updated_time, dt.DEFAULT_TIME_ZONE
                 )
 
-                # We calculate this value dynamically based on the returned chart data. 
-                # There is no value available on the API that provides the combined value of: charging + load consumption
-                # For each time entry convert it's wattage into kWh, this assumes that the wattage value is
-                # the same for the whole X minute window (it's the only assumption we can make)
-                # We Multiply the wattage by <TIME PERIOD>/<HOUR> (the number of minutes of the time window divided by the number of minutes in an hour)
+                # We calculate this value dynamically based on the returned chart data.
+                # There is no value available on the API that provides the combined
+                # value of: charging + load consumption
+                # For each time entry convert it's wattage into kWh, this assumes that
+                # the wattage value is the same for the whole X minute window (it's the
+                # only assumption we can make)
+                # We Multiply the wattage by <TIME PERIOD>/<HOUR>
+                # (the number of minutes of the time window divided by the number of minutes in an hour)
                 # to give us the equivalent kWh reading for that X minute window
                 pac_to_user_today = 0.0
                 hour_secs = datetime.timedelta(hours=1).total_seconds()
-                previous_time_val = datetime.time(0,0,0) #Start at midnight
+                previous_time_val = datetime.time(0, 0, 0)  # Start at midnight
                 for key in sorted_keys:
-                  time_val = datetime.datetime.strptime(key, '%H:%M').time()
-                  #Calculate the difference between this and the previous timestamp to determine how long this rate has been used for
-                  timediff_secs = (datetime.datetime.combine(datetime.date.min, time_val)
-                                    - datetime.datetime.combine(datetime.date.min, previous_time_val)).total_seconds()
-                  multiplier = timediff_secs / hour_secs
-                  data_points = mix_chart_entries[key]
-                  pac_to_user_today += float(data_points['pacToUser']) * multiplier
-                  previous_time_val = time_val
+                    time_val = datetime.datetime.strptime(key, "%H:%M").time()
+                    # Calculate the difference between this and the previous timestamp
+                    # to determine how long this rate has been used for
+                    timediff_secs = (
+                        datetime.datetime.combine(datetime.date.min, time_val)
+                        - datetime.datetime.combine(
+                            datetime.date.min, previous_time_val
+                        )
+                    ).total_seconds()
+                    multiplier = timediff_secs / hour_secs
+                    data_points = mix_chart_entries[key]
+                    pac_to_user_today += float(data_points["pacToUser"]) * multiplier
+                    previous_time_val = time_val
 
-                mix_detail['etouser_combined'] = round(pac_to_user_today,2)
-                    
+                mix_detail["etouser_combined"] = round(pac_to_user_today, 2)
+
                 self.data = {
                     **mix_info,
                     **mix_totals,
@@ -335,10 +352,11 @@ class GrowattData:
             )
             diff = float(api_value) - float(previous_value)
 
-            # Check if the value has dropped (negative value i.e. < 0) and it has only dropped by a
-            # small amount, if so, use the previous value.
-            # Note - The energy dashboard takes care of drops within 10% of the current value,
-            # however if the value is low e.g. 0.2 and drops by 0.1 it classes as a reset.
+            # Check if the value has dropped (negative value i.e. < 0) and it has only
+            # dropped by a small amount, if so, use the previous value.
+            # Note - The energy dashboard takes care of drops within 10%
+            # of the current value, however if the value is low e.g. 0.2
+            # and drops by 0.1 it classes as a reset.
             if -(entity_description.previous_value_drop_threshold) <= diff < 0:
                 _LOGGER.debug(
                     (
@@ -355,18 +373,19 @@ class GrowattData:
                     "%s - No drop detected, using API value", entity_description.name
                 )
 
-        # Lifetime total values should always be increasing, they will never reset, however
-        # the API sometimes returns 0 values when the clock turns to 00:00 local time
-        # in that scenario we should just return the previous value
+        # Lifetime total values should always be increasing, they will never reset,
+        # however the API sometimes returns 0 values when the clock turns to 00:00
+        # local time in that scenario we should just return the previous value
         # Scenarios:
         # 1 - System has a genuine 0 value when it it first commissioned:
         #        - will return 0 until a non-zero value is registered
-        # 2 - System has been running fine but temporarily resets to 0 briefly at midnight:
+        # 2 - System has been running fine but temporarily resets to 0 briefly
+        #     at midnight:
         #        - will return the previous value
         # 3 - HA is restarted during the midnight 'outage' - Not handled:
         #        - Previous value will not exist meaning 0 will be returned
-        #        - This is an edge case that would be better handled by looking up the previous
-        #          value of the entity from the recorder
+        #        - This is an edge case that would be better handled by looking
+        #          up the previous value of the entity from the recorder
         if entity_description.never_resets and api_value == 0 and previous_value:
             _LOGGER.debug(
                 (

@@ -15,8 +15,7 @@ SERVER_URLS = [
     "https://pvplusanz.jinkosolar.com/",
 ]
 
-DEPRECATED_URLS = [
-]
+DEPRECATED_URLS: list[str] = []
 
 DEFAULT_URL = SERVER_URLS[0]
 
