@@ -231,7 +231,7 @@ MIX_SENSOR_TYPES: tuple[GrowattSensorEntityDescription, ...] = (
         api_key="lastdataupdate",
         device_class=SensorDeviceClass.TIMESTAMP,
     ),
-    # Values from 'dashboard_data' API call
+    # Values calculated from chart data
     GrowattSensorEntityDescription(
         key="mix_import_from_grid_today_combined",
         name="Import from grid today (load + charging)",

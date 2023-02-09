@@ -20,6 +20,8 @@ This is a sensor to collect information from your Growatt inverters using [Growa
 
 This will log into your Growatt account and use the first “Plant”, after which it collects the inverters on this plant and creates sensors for these inverters as well as total sensors.
 
+This integration also works with Jinko Solar systems (as they appear to be exactly the same systems & API), the URL is available in the drop-down when selecting your chosen endpoint.
+
 ## Supported Systems
 - TLX aka MIN/MIC/MOD/NEO
 - Mix aka Hybrid

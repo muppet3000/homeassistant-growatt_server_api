@@ -9,14 +9,13 @@ DEFAULT_NAME = "Growatt"
 
 SERVER_URLS = [
     "https://server-api.growatt.com/",
+    "https://server.growatt.com/",
     "https://server-us.growatt.com/",
     "http://server.smten.com/",
     "https://pvplusanz.jinkosolar.com/",
 ]
 
-DEPRECATED_URLS = [
-    "https://server.growatt.com/",
-]
+DEPRECATED_URLS: list[str] = []
 
 DEFAULT_URL = SERVER_URLS[0]
 

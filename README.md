@@ -10,6 +10,8 @@ The integration has been through a period of instability due to various issues w
 
 The changes made in this repository will be rolled up monthly and then submitted as a Pull-Request to the main Home Assistant Core repository for release as an 'official' Integration.
 
+Note - This Integration works not only with Growatt systems but also Jinko Solar systems (as they appear to be exactly the same systems & API).
+
 # Implementation
 On initial release this plugin is an identical copy of the original integration that was part of the Home Assistant release. Going forward, this will be the upstream release of the Integration and the first place that bugs are fixed & new features are added.
 
