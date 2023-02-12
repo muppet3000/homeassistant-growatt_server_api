@@ -12,6 +12,13 @@ The changes made in this repository will be rolled up monthly and then submitted
 
 Note - This Integration works not only with Growatt systems but also Jinko Solar systems (as they appear to be exactly the same systems & API).
 
+# !IMPORTANT NOTICE!
+Since 07/02/2023 (7th Feb) Growatt have started implementing rate limiting and blocking to user accounts that make excessive API calls i.e. this integration. There is an extended discussion around it [here](https://github.com/muppet3000/homeassistant-growatt_server_api/issues/15).
+
+If you're interested in the short version read these posts: [first](https://github.com/muppet3000/homeassistant-growatt_server_api/issues/15#issuecomment-1423787751), [second](https://github.com/muppet3000/homeassistant-growatt_server_api/issues/15#issuecomment-1424810061), [third](https://github.com/muppet3000/homeassistant-growatt_server_api/issues/15#issuecomment-1427052222)
+
+The recent developments throw into question the long-term viability of this Integration, please see the 'third' link above for the proposed plan.
+
 # Implementation
 On initial release this plugin is an identical copy of the original integration that was part of the Home Assistant release. Going forward, this will be the upstream release of the Integration and the first place that bugs are fixed & new features are added.
 
