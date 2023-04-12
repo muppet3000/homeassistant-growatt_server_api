@@ -32,7 +32,7 @@ from .sensor_types.total import TOTAL_SENSOR_TYPES
 
 _LOGGER = logging.getLogger(__name__)
 
-SCAN_INTERVAL = datetime.timedelta(minutes=120)
+SCAN_INTERVAL = datetime.timedelta(minutes=5)
 THROTTLE = datetime.timedelta(minutes=1)
 
 
