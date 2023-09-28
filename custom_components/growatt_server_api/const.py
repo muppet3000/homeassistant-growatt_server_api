@@ -13,6 +13,7 @@ SERVER_URLS = [
     "https://server-us.growatt.com/",
     "http://server.smten.com/",
     "https://pvplusanz.jinkosolar.com/",
+    "https://server.pvbutler.com/",
 ]
 
 DEPRECATED_URLS: list[str] = []
