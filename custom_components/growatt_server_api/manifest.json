@@ -1,12 +1,12 @@
 {
   "domain": "growatt_server_api",
   "name": "Growatt Server API",
+  "codeowners": ["@muppet3000"],
   "config_flow": true,
   "documentation": "https://github.com/muppet3000/homeassistant-growatt_server_api",
-  "requirements": ["growattServer==1.3.0"],
-  "codeowners": ["@muppet3000"],
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/muppet3000/homeassistant-growatt_server_api/issues",
   "loggers": ["growattServerApi"],
-  "version": "1.0.2",
-  "issue_tracker": "https://github.com/muppet3000/homeassistant-growatt_server_api/issues"
+  "requirements": ["growattServer==1.3.0"],
+  "version": "1.0.3"
 }
