@@ -8,12 +8,12 @@ DEFAULT_PLANT_ID = "0"
 DEFAULT_NAME = "Growatt"
 
 SERVER_URLS = [
+    "https://openapi.growatt.com/",
     "https://server-api.growatt.com/",
     "https://server.growatt.com/",
     "https://server-us.growatt.com/",
     "http://server.smten.com/",
     "https://pvplusanz.jinkosolar.com/",
-    "https://server.pvbutler.com/",
 ]
 
 DEPRECATED_URLS: list[str] = []
