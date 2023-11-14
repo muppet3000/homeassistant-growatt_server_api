@@ -12,6 +12,7 @@ SERVER_URLS = [
     "https://server-api.growatt.com/",
     "https://server.growatt.com/",
     "https://server-us.growatt.com/",
+    "https://server.pvbutler.com/",
     "http://server.smten.com/",
     "https://pvplusanz.jinkosolar.com/",
 ]
